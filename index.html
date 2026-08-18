@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TTTalert — Smart Alerts for Bankr Agents</title>
+  <meta name="description" content="TTTalert delivers proactive fee claim alerts, volume spike detection, momentum shifts, and risk warnings for Bankr agents on Base & Robinhood Chain.">
+  
+  <meta property="og:title" content="TTTalert — Smart Alerts for Bankr">
+  <meta property="og:description" content="Never miss a fee claim, volume spike, or momentum shift. Powered by data. Driven by intelligence.">
+  <meta property="og:image" content="https://iili.io/CLK3EIR.md.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <style>
+    :root {
+      --bg: #09090b;
+      --card: #111113;
+      --border: #27272a;
+      --text: #fafafa;
+      --muted: #a1a1aa;
+      --accent: #ffffff;
+      --cyan: #22d3ee;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      padding: 28px 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-img { height: 40px; width: auto; }
+
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 15px;
+      transition: color 0.2s;
+    }
+    .nav a:hover { color: var(--text); }
+
+    .hero {
+      padding: 60px 0 50px;
+      text-align: center;
+    }
+
+    .hero-logo {
+      width: 240px;
+      max-width: 85%;
+      height: auto;
+      margin: 0 auto 28px;
+      display: block;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      margin-bottom: 12px;
+    }
+
+    .slogan {
+      font-size: 18px;
+      color: var(--cyan);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .hero .subtitle {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 32px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #000;
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.2s;
+    }
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(255,255,255,0.12);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      margin-left: 12px;
+    }
+    .btn-secondary:hover {
+      background: var(--card);
+      box-shadow: none;
+    }
+
+    section { padding: 50px 0; }
+
+    h2 {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      margin-bottom: 32px;
+      font-size: 16px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+    .feature-card:hover { border-color: #3f3f46; }
+
+    .feature-card h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .install-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 32px;
+    }
+
+    .install-box code {
+      display: block;
+      background: #0c0c0e;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 14px;
+      color: #e4e4e7;
+      margin: 14px 0 8px;
+      overflow-x: auto;
+    }
+
+    .examples {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 28px;
+    }
+
+    .examples code {
+      display: block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 14px;
+      color: #d4d4d8;
+      margin: 6px 0;
+    }
+
+    .cta {
+      text-align: center;
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+
+    footer {
+      padding: 40px 0 50px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer a {
+      color: var(--text);
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 32px; }
+      .btn-secondary {
+        margin-left: 0;
+        margin-top: 12px;
+        display: inline-block;
+      }
+      header { flex-direction: column; gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <a href="https://tttmorena.github.io/TTTprojject/">
+        <img src="https://iili.io/CsVfNob.jpg" alt="TTT" class="logo-img">
+      </a>
+      <nav class="nav">
+        <a href="https://github.com/TTtmorena/TTTalert" target="_blank">GitHub</a>
+        <a href="https://x.com/TTTprojject" target="_blank">Twitter</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <img src="https://iili.io/CLK3EIR.md.png" alt="TTTalert" class="hero-logo">
+      <div class="badge">Bankr Ecosystem · Base & Robinhood Chain</div>
+      <h1>TTTalert</h1>
+      <p class="slogan">Never miss what matters.</p>
+      <p class="subtitle">
+        Smart alerts for fee claims, volume spikes,<br>
+        momentum shifts & risk warnings.
+      </p>
+      <div>
+        <a href="https://github.com/TTtmorena/TTTalert" class="btn" target="_blank">Install Skill</a>
+        <a href="https://tttmorena.github.io/TTTprojject/" class="btn btn-secondary" target="_blank">All Skills</a>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section>
+      <h2>Everything you need</h2>
+      <p class="section-desc">Proactive alerts. Real data. Clear actions.</p>
+
+      <div class="features">
+        <div class="feature-card">
+          <h3>Fee Claim Alert</h3>
+          <p>Get notified the moment claimable fees reach your threshold.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Volume Spike Detection</h3>
+          <p>Real-time detection of significant volume increases.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Momentum Shift</h3>
+          <p>Alert when fee generation or price momentum changes direction.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Multi-Token Watchlist</h3>
+          <p>Monitor multiple tokens and only see active alerts.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Custom Thresholds</h3>
+          <p>Fully adjustable alert levels for fees, volume, and price.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Risk Warnings</h3>
+          <p>Liquidity health and fee sustainability alerts.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Install -->
+    <section>
+      <h2>Install in seconds</h2>
+      <p class="section-desc">Just tell your Bankr agent:</p>
+      
+      <div class="install-box">
+        <code>install the skill at https://github.com/TTtmorena/TTTalert</code>
+        <p style="font-size: 14px; color: var(--muted); margin-top: 8px;">
+          The skill activates automatically when you ask for alerts, notifications, or watchlist.
+        </p>
+      </div>
+    </section>
+
+    <!-- Usage -->
+    <section>
+      <h2>Usage Examples</h2>
+      <p class="section-desc">After installing, try these:</p>
+      
+      <div class="examples">
+        <code>TTTalert for CLAWD</code>
+        <code>set fee alert when claimable > 0.02 WETH</code>
+        <code>add CLAWD and Surplus to watchlist</code>
+        <code>volume spike alerts</code>
+        <code>my alerts</code>
+        <code>TTTalert status</code>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta">
+      <h2>Ready to stay ahead?</h2>
+      <p class="section-desc" style="margin-bottom: 28px;">
+        Part of <strong>Thinking Trade Tech</strong> — AI agent skills for Bankr.
+      </p>
+      <a href="https://github.com/TTtmorena/TTTalert" class="btn" target="_blank">Install TTTalert</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div style="margin-bottom: 12px;">
+        <a href="https://github.com/TTtmorena/TTTalert">GitHub</a>
+        <a href="https://tttmorena.github.io/TTTprojject/">TTTprojject</a>
+        <a href="https://x.com/TTTprojject">@TTTprojject</a>
+        <a href="https://x.com/TTtmorena">@TTtmorena</a>
+      </div>
+      <p>Built by thania morena · Thinking Trade Tech</p>
+      <p style="margin-top: 6px; font-size: 13px;">Powered by data. Driven by intelligence.</p>
+    </footer>
+  </div>
+</body>
+</html>
